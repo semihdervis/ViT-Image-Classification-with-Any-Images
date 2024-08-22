@@ -4,11 +4,13 @@ import numpy as np
 import torch
 from PIL import Image
 
+DATASET_PATH = "diabetic-retinopathy"
+
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load and preprocess dataset
-ds = load_dataset('betul2').rename_column('label', 'labels')
+ds = load_dataset(DATASET_PATH).rename_column('label', 'labels')
 ds = ds['train'].train_test_split(test_size=0.1)
 train_val = ds['train'].train_test_split(test_size=0.1)
 ds['train'], ds['validation'], ds['test'] = train_val['train'], train_val['test'], ds['test']

@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from PIL import Image
 
-DATASET_PATH = "diabetic-retinopathy"
+DATASET_PATH = "mnist"
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

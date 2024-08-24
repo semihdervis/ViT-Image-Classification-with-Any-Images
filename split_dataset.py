@@ -4,13 +4,8 @@ import numpy as np
 import torch
 from PIL import Image
 
-def split_dataset(dataset_path):
-    # Set device
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    # Load dataset
-    ds = load_dataset(dataset_path).rename_column('label', 'labels')
-
+def split_dataset(ds):
+    
     # Check for existing splits and handle accordingly
     if 'train' in ds.keys() and 'validation' in ds.keys() and 'test' in ds.keys():
         # Dataset already has train, validation, and test splits
@@ -37,8 +32,8 @@ def split_dataset(dataset_path):
         })
     elif 'train' in ds.keys():
         # Dataset only has a train split, so create both validation and test splits
-        ds_split = ds['train'].train_test_split(test_size=0.2)
-        train_val = ds_split['train'].train_test_split(test_size=0.1)
+        ds_split = ds['train'].train_test_split(test_size=0.1)  # Split 10% for test set
+        train_val = ds_split['train'].train_test_split(test_size=0.2857)  # Split the remaining 90% into train and validation (0.2 / 0.9 ≈ 0.2857)
         dataset = DatasetDict({
             'train': train_val['train'],
             'validation': train_val['test'],

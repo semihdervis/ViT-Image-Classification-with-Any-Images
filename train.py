@@ -5,14 +5,18 @@ import torch
 from PIL import Image
 from dataset_splitter import split_dataset
 
-DATASET_PATH = "mnist"
-OUTPUT_DIR = "vit-base-mnist"
+DATASET_PATH = "Bingsu/Cat_and_Dog"
+OUTPUT_DIR = "vit-base-cat-dog"
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load and preprocess dataset
-ds = load_dataset(DATASET_PATH).rename_column('label', 'labels')
+ds = load_dataset(DATASET_PATH)
+
+# Check if 'label' column exists and rename it to 'labels'
+if 'label' in ds['train'].column_names:
+    ds = ds.rename_column('label', 'labels')
 
 ds = split_dataset(ds)
 

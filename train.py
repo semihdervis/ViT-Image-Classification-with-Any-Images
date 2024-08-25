@@ -4,9 +4,10 @@ import numpy as np
 import torch
 from PIL import Image
 from dataset_splitter import split_dataset
+from utils import get_unique_output_dir
 
-DATASET_PATH = "Bingsu/Cat_and_Dog"
-OUTPUT_DIR = "vit-base-cat-dog"
+DATASET_PATH = r"C:\Workspace\Datasets\face_classification"
+OUTPUT_DIR = get_unique_output_dir(r"vit-base-happy-sad")
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -97,7 +98,7 @@ print(metrics)
 kwargs = {
     "finetuned_from": model.config._name_or_path,
     "tasks": "image-classification",
-    "dataset": 'custom brats layers',
+    "dataset": 'custom dataset',
     "tags": ['image-classification'],
 }
 if training_args.push_to_hub:

@@ -91,6 +91,8 @@ trainer.save_state()
 metrics = trainer.evaluate(prepared_ds['test'])
 trainer.save_metrics("eval", metrics)
 
+print(metrics)
+
 # Model card creation
 kwargs = {
     "finetuned_from": model.config._name_or_path,

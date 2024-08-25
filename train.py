@@ -3,18 +3,18 @@ from datasets import load_dataset, DatasetDict, load_metric
 import numpy as np
 import torch
 from PIL import Image
+from dataset_splitter import split_dataset
 
 DATASET_PATH = "mnist"
+OUTPUT_DIR = "vit-base-mnist"
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load and preprocess dataset
 ds = load_dataset(DATASET_PATH).rename_column('label', 'labels')
-ds = ds['train'].train_test_split(test_size=0.1)
-train_val = ds['train'].train_test_split(test_size=0.1)
-ds['train'], ds['validation'], ds['test'] = train_val['train'], train_val['test'], ds['test']
-dataset = DatasetDict(ds)
+
+ds = split_dataset(ds)
 
 # Initialize feature extractor and model
 model_name_or_path = 'google/vit-base-patch16-224-in21k'
@@ -51,7 +51,7 @@ def compute_metrics(p):
 
 # Training arguments
 training_args = TrainingArguments(
-    output_dir="./vit-base--v5",
+    output_dir=OUTPUT_DIR,
     per_device_train_batch_size=16,
     evaluation_strategy="steps",
     num_train_epochs=4,

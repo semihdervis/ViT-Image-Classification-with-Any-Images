@@ -1,2 +1,4 @@
 diabetic-retinopathy
-vit-base--v5
+vit-base--v5/
+train.ipynb
+__pycache__/

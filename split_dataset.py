@@ -5,6 +5,12 @@ import torch
 from PIL import Image
 
 def split_dataset(ds):
+    """
+    Consider each case separately to preserve the integrity of predefined splits.
+    This approach ensures that existing train, validation, and test splits are 
+    used as intended without disrupting their original structure, which could 
+    affect the accuracy and reliability of model evaluation.
+    """
     
     # Check for existing splits and handle accordingly
     if 'train' in ds.keys() and 'validation' in ds.keys() and 'test' in ds.keys():
@@ -33,7 +39,7 @@ def split_dataset(ds):
     elif 'train' in ds.keys():
         # Dataset only has a train split, so create both validation and test splits
         ds_split = ds['train'].train_test_split(test_size=0.1)  # Split 10% for test set
-        train_val = ds_split['train'].train_test_split(test_size=0.2857)  # Split the remaining 90% into train and validation (0.2 / 0.9 ≈ 0.2857)
+        train_val = ds_split['train'].train_test_split(test_size=0.2)  # Split the remaining 90% into train and validation (0.2 / 0.9 ≈ 0.2857)
         dataset = DatasetDict({
             'train': train_val['train'],
             'validation': train_val['test'],

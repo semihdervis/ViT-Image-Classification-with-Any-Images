@@ -6,8 +6,8 @@ from PIL import Image
 from dataset_splitter import split_dataset
 from utils import get_unique_output_dir
 
-DATASET_PATH = r"C:\Workspace\Datasets\face_classification"
-OUTPUT_DIR = get_unique_output_dir(r"vit-base-happy-sad")
+DATASET_PATH = r"C:\Workspace\Datasets\face_classification" # Replace with your dataset path
+OUTPUT_DIR = get_unique_output_dir(r"vit-base-happy-sad") # Replace with your desired model output directory
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

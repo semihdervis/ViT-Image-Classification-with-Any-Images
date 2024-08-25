@@ -3,14 +3,15 @@ from PIL import Image
 import torch
 import torch.nn.functional as F
 
-# Load model and feature extractor
-model_path = "vit-base-cat-dog"  # Replace with the path to your model
-model = ViTForImageClassification.from_pretrained(model_path)
-feature_extractor = ViTFeatureExtractor.from_pretrained(model_path)
+MODEL_PATH = r"vit-base-cat-dog"  # Replace with your model path
+IMAGE_PATH = r"test_data/dog.png"  # Replace with your image path
+
+# Load model and feature extractor  
+model = ViTForImageClassification.from_pretrained(MODEL_PATH)
+feature_extractor = ViTFeatureExtractor.from_pretrained(MODEL_PATH)
 
 # Load and preprocess image
-image_path = r"test_data/dog.png"  # Replace with your image path
-image = Image.open(image_path).convert("RGB")  # Ensure image is in RGB format
+image = Image.open(IMAGE_PATH).convert("RGB")  # Ensure image is in RGB format
 
 # Extract features
 inputs = feature_extractor(images=image, return_tensors="pt")

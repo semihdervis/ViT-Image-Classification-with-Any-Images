@@ -3,8 +3,8 @@ from PIL import Image
 import torch
 import torch.nn.functional as F
 
-MODEL_PATH = r"vit-base-cat-dog"  # Replace with your model path
-IMAGE_PATH = r"test_data/dog.png"  # Replace with your image path
+MODEL_PATH = r"C:\Workspace\Models\vit-base-happy-sad"  # Replace with your model path
+IMAGE_PATH = r"C:\Workspace\Datasets\test_data\sad.png"  # Replace with your image path
 
 # Load model and feature extractor  
 model = ViTForImageClassification.from_pretrained(MODEL_PATH)

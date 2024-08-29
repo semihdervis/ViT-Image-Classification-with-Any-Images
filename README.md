@@ -41,5 +41,15 @@ pip install -r requirements.txt
    python test_model_with_single_image.py
    ```
 
+### Testing the Model with Video Capture
+
+1. **Set Model Path:**
+   - In [`test_model_with_video_capture.py`](test_model_with_video_capture.py), replace `MODEL_PATH` with the path to your trained model.
+
+2. **Run the Video Capture Script:**
+   ```bash
+   python video_cap.py
+   ```
+
 ## License
 This project is licensed under the [MIT License](LICENSE).

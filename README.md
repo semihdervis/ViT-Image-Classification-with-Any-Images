@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 2. **Run the Video Capture Script:**
    ```bash
-   python video_cap.py
+   python test_model_with_video_capture.py
    ```
 
 ## License
